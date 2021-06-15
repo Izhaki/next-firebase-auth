@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin'
-import { getConfig } from 'src/config'
+import { getConfig } from '../config'
 
 const initFirebaseAdminSDK = () => {
   if (!admin.apps.length) {

@@ -19,6 +19,13 @@ module.exports = {
     ],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        // scripts that are allowed to import from devDependencies
+        devDependencies: ['scripts/*'],
+      },
+    ],
   },
   overrides: [
     // Set Jest rules only for test files.

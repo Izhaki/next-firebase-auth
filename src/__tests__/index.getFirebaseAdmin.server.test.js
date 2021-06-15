@@ -24,17 +24,16 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-describe('index.server.js: getFirebaseAdmin', () => {
+describe('server/index: getFirebaseAdmin', () => {
   it('exports getFirebaseAdmin', () => {
-    expect.assertions(2)
-    const indexServer = require('src/index.server').default
+    expect.assertions(1)
+    const indexServer = require('src/server')
     expect(indexServer.getFirebaseAdmin).toBeDefined()
-    expect(indexServer.init).toEqual(expect.any(Function))
   })
 
   it('getFirebaseAdmin returns admin', () => {
     expect.assertions(1)
-    const indexServer = require('src/index.server').default
+    const indexServer = require('src/server')
     const response = indexServer.getFirebaseAdmin()
     expect(response).toEqual(admin)
   })

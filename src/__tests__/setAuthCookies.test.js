@@ -1,5 +1,5 @@
 import { testApiHandler } from 'next-test-api-route-handler'
-import { getCustomIdAndRefreshTokens } from 'src/firebaseAdmin'
+import { getCustomIdAndRefreshTokens } from 'src/server/firebaseAdmin'
 import { setCookie } from 'src/cookies'
 import {
   getAuthUserCookieName,
@@ -10,7 +10,7 @@ import createMockConfig from 'src/testHelpers/createMockConfig'
 import createMockAuthUser from 'src/testHelpers/createMockAuthUser'
 
 jest.mock('src/config')
-jest.mock('src/firebaseAdmin')
+jest.mock('src/server/firebaseAdmin')
 jest.mock('src/authCookies')
 jest.mock('src/cookies')
 
@@ -50,7 +50,7 @@ afterEach(() => {
 describe('setAuthCookies', () => {
   it('throws if req.headers.authorization is not set', async () => {
     expect.assertions(1)
-    const setAuthCookies = require('src/setAuthCookies').default
+    const setAuthCookies = require('src/server/setAuthCookies').default
     await testApiHandler({
       handler: async (req, res) => {
         await expect(setAuthCookies(req, res)).rejects.toThrow(
@@ -66,7 +66,7 @@ describe('setAuthCookies', () => {
 
   it('passes the token from req.headers.authorization to Firebase admin', async () => {
     expect.assertions(1)
-    const setAuthCookies = require('src/setAuthCookies').default
+    const setAuthCookies = require('src/server/setAuthCookies').default
     await testApiHandler({
       handler: async (req, res) => {
         await setAuthCookies(req, res)
@@ -88,7 +88,7 @@ describe('setAuthCookies', () => {
   it('sets the AuthUser cookie as expected', async () => {
     expect.assertions(1)
     const mockAuthUser = createMockAuthUser()
-    const setAuthCookies = require('src/setAuthCookies').default
+    const setAuthCookies = require('src/server/setAuthCookies').default
     let mockReq
     let mockRes
     await testApiHandler({
@@ -128,7 +128,7 @@ describe('setAuthCookies', () => {
 
   it('sets the AuthUserTokens cookie as expected', async () => {
     expect.assertions(1)
-    const setAuthCookies = require('src/setAuthCookies').default
+    const setAuthCookies = require('src/server/setAuthCookies').default
     let mockReq
     let mockRes
     await testApiHandler({
@@ -172,7 +172,7 @@ describe('setAuthCookies', () => {
   it('returns the expected values', async () => {
     expect.assertions(1)
     const mockAuthUser = createMockAuthUser()
-    const setAuthCookies = require('src/setAuthCookies').default
+    const setAuthCookies = require('src/server/setAuthCookies').default
     await testApiHandler({
       handler: async (req, res) => {
         const response = await setAuthCookies(req, res)

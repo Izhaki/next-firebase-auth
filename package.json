@@ -10,16 +10,16 @@
     "ssr",
     "token"
   ],
-  "browser": "build/index.browser.js",
-  "main": "build/index.node.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:gladly-team/next-firebase-auth.git",
   "author": "Gladly Team",
   "license": "MIT",
   "scripts": {
-    "build": "npm-run-all -s build:clean build:src",
-    "build:clean": "rm -rf ./build",
-    "build:src": "NODE_ENV=production webpack",
+    "build": "npm-run-all -s build:clean build:cjs && yarn build:frank-dist",
+    "build:clean": "rm -rf ./dist",
+    "build:cjs": "cross-env NODE_ENV=production babel src --out-dir ./dist",
+    "build:frank-dist": "node ./scripts/frank-dist.js",
     "lint": "eslint ./",
     "test": "npm-run-all -s install-example-deps lint test:coverage",
     "test:run": "jest --env=jsdom",
@@ -27,8 +27,7 @@
     "test:watch": "yarn run test:run --watch",
     "install-example-deps": "cd example && yarn",
     "dev:publish": "npm-run-all -s build dev:yalc-publish-push",
-    "dev:yalc-publish-push": "yalc publish --push",
-    "analyze-bundle": "WEBPACK_ANALYZE_BUNDLE=true yarn run build"
+    "dev:yalc-publish-push": "yalc publish dist --push"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
@@ -45,8 +44,8 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "codecov": "^3.8.2",
-    "copy-webpack-plugin": "^8.1.1",
     "core-js": "^3.12.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.25.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
@@ -59,6 +58,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "firebase": "^8.5.0",
     "firebase-admin": "^9.4.2",
+    "fs-extra": "^10.0.0",
     "jest": "^26.6.3",
     "jsdom": "^16.3.0",
     "mockdate": "^3.0.2",
@@ -74,9 +74,7 @@
     "set-cookie-parser": "^2.4.6",
     "typescript": "^4.2.4",
     "webpack": "^5.11.1",
-    "webpack-bundle-analyzer": "^4.3.0",
-    "webpack-cli": "^4.7.0",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-cli": "^4.7.0"
   },
   "peerDependencies": {
     "firebase": ">=7.0.0 <9",
@@ -87,8 +85,5 @@
   },
   "dependencies": {
     "cookies": "^0.8.0"
-  },
-  "files": [
-    "/build"
-  ]
+  }
 }

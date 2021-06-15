@@ -1,12 +1,12 @@
-import createAuthUser from 'src/createAuthUser'
-import { getCookie } from 'src/cookies'
-import { verifyIdToken } from 'src/firebaseAdmin'
 import {
   getAuthUserCookieName,
   getAuthUserTokensCookieName,
-} from 'src/authCookies'
-import { getConfig } from 'src/config'
-import AuthAction from 'src/AuthAction'
+} from '../authCookies'
+import { getConfig } from '../config'
+import AuthAction from '../AuthAction'
+import createAuthUser from '../createAuthUser'
+import { getCookie } from '../cookies'
+import { verifyIdToken } from './firebaseAdmin'
 
 /**
  * An wrapper for a page's exported getServerSideProps that

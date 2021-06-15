@@ -41,7 +41,7 @@ afterEach(() => {
 describe('unsetAuthCookies', () => {
   it('calls deleteCookie for the AuthUser cookie', async () => {
     expect.assertions(1)
-    const unsetAuthCookies = require('src/unsetAuthCookies').default
+    const unsetAuthCookies = require('src/server/unsetAuthCookies').default
     let mockReq
     let mockRes
     await testApiHandler({
@@ -79,7 +79,7 @@ describe('unsetAuthCookies', () => {
 
   it('calls deleteCookie for the AuthUserTokens cookie', async () => {
     expect.assertions(1)
-    const unsetAuthCookies = require('src/unsetAuthCookies').default
+    const unsetAuthCookies = require('src/server/unsetAuthCookies').default
     let mockReq
     let mockRes
     await testApiHandler({

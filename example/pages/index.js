@@ -1,9 +1,6 @@
 import React from 'react'
-import {
-  useAuthUser,
-  withAuthUser,
-  withAuthUserTokenSSR,
-} from 'next-firebase-auth'
+import { useAuthUser, withAuthUser } from 'next-firebase-auth'
+import { withAuthUserTokenSSR } from 'next-firebase-auth/server'
 import Header from '../components/Header'
 import DemoPageLinks from '../components/DemoPageLinks'
 

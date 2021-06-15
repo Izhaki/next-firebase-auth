@@ -1,10 +1,10 @@
-import { getCustomIdAndRefreshTokens } from 'src/firebaseAdmin'
-import { setCookie } from 'src/cookies'
+import { getConfig } from '../config'
 import {
   getAuthUserCookieName,
   getAuthUserTokensCookieName,
-} from 'src/authCookies'
-import { getConfig } from 'src/config'
+} from '../authCookies'
+import { setCookie } from '../cookies'
+import { getCustomIdAndRefreshTokens } from './firebaseAdmin'
 
 const setAuthCookies = async (req, res) => {
   if (!(req.headers && req.headers.authorization)) {

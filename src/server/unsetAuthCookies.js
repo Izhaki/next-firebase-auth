@@ -1,9 +1,9 @@
+import { deleteCookie } from '../cookies'
+import { getConfig } from '../config'
 import {
   getAuthUserCookieName,
   getAuthUserTokensCookieName,
-} from 'src/authCookies'
-import { getConfig } from 'src/config'
-import { deleteCookie } from 'src/cookies'
+} from '../authCookies'
 
 const unsetAuthCookies = async (req, res) => {
   // Pick a subset of the config.cookies options to

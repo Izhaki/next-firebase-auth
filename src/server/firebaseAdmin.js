@@ -1,6 +1,6 @@
-import getFirebaseAdminApp from 'src/initFirebaseAdminSDK'
-import createAuthUser from 'src/createAuthUser'
-import { getConfig } from 'src/config'
+import createAuthUser from '../createAuthUser'
+import { getConfig } from '../config'
+import getFirebaseAdminApp from './initFirebaseAdminSDK'
 
 // https://firebase.google.com/docs/auth/admin/errors
 const FIREBASE_ERROR_TOKEN_EXPIRED = 'auth/id-token-expired'

@@ -23,7 +23,8 @@ afterEach(() => {
 describe('initFirebaseAdminSDK', () => {
   it('calls admin.initializeApp with the expected values', () => {
     expect.assertions(1)
-    const initFirebaseAdminSDK = require('src/initFirebaseAdminSDK').default
+    const initFirebaseAdminSDK = require('src/server/initFirebaseAdminSDK')
+      .default
     initFirebaseAdminSDK()
     expect(admin.initializeApp).toHaveBeenCalledWith({
       credential: {
@@ -38,7 +39,8 @@ describe('initFirebaseAdminSDK', () => {
 
   it('returns the admin app', () => {
     expect.assertions(1)
-    const initFirebaseAdminSDK = require('src/initFirebaseAdminSDK').default
+    const initFirebaseAdminSDK = require('src/server/initFirebaseAdminSDK')
+      .default
     const response = initFirebaseAdminSDK()
     expect(response).toEqual(admin)
   })
@@ -46,7 +48,8 @@ describe('initFirebaseAdminSDK', () => {
   it('does not call admin.initializeApp if Firebase already has an initialized app', () => {
     expect.assertions(1)
     admin.apps = [{ some: 'app' }]
-    const initFirebaseAdminSDK = require('src/initFirebaseAdminSDK').default
+    const initFirebaseAdminSDK = require('src/server/initFirebaseAdminSDK')
+      .default
     initFirebaseAdminSDK()
     expect(admin.initializeApp).not.toHaveBeenCalled()
   })
@@ -58,7 +61,8 @@ describe('initFirebaseAdminSDK', () => {
       ...mockConfig,
       firebaseAdminInitConfig: undefined,
     })
-    const initFirebaseAdminSDK = require('src/initFirebaseAdminSDK').default
+    const initFirebaseAdminSDK = require('src/server/initFirebaseAdminSDK')
+      .default
     expect(() => {
       initFirebaseAdminSDK()
     }).toThrow(
@@ -74,7 +78,8 @@ describe('initFirebaseAdminSDK', () => {
       firebaseAdminInitConfig: undefined,
     })
     admin.apps = [{ some: 'app' }]
-    const initFirebaseAdminSDK = require('src/initFirebaseAdminSDK').default
+    const initFirebaseAdminSDK = require('src/server/initFirebaseAdminSDK')
+      .default
     expect(() => {
       initFirebaseAdminSDK()
     }).not.toThrow()
